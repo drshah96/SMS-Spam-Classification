@@ -81,3 +81,35 @@ dataMatrix_test <- data_SparseMatrix[4170:5559, ]
 #Corpus Clean for Testing and Training Matrix
 data_corpus_train <- data_corpus_clean[1:4169]
 data_corpus_test <- data_corpus_clean[4170:5559]
+
+#Performing Text Visualization Source File
+source("Text Visualization.R")
+
+### Creating Indicator features for frequent words ###
+FreqWords <- findFreqTerms(dataMatrix_train, 5)
+
+#Saving List using Dictionary() Function
+Dictionary <- function(x) {
+        if( is.character(x) ) {
+                return (x)
+        }
+        stop('x is not a character vector')
+}
+
+data_dict <- Dictionary(findFreqTerms(dataMatrix_train, 5))
+
+#Appending Document Term Matrix to Train and Test Dataset 
+data_train <- DocumentTermMatrix(data_corpus_train, list(data_dict))
+data_test <- DocumentTermMatrix(data_corpus_test, list(data_dict))
+
+#Converting the frequency of word to count
+convert_counts <- function(x) {
+        x <- ifelse(x > 0, 1, 0)
+        x <- factor(x, levels = c(0, 1), labels = c("No", "Yes")) 
+        return(x)
+}
+
+#Appending count function to Train and Test Dataset
+data_train <- apply(data_train, MARGIN = 2, convert_counts)
+data_test <- apply(data_test, MARGIN = 2, convert_counts)
+
