@@ -69,3 +69,15 @@ inspect(data_corpus_clean[1:5])
 #Creating sparse matrix from clean corpus
 data_SparseMatrix <- DocumentTermMatrix(data_corpus_clean)
 inspect(data_SparseMatrix)
+
+#Testing and Training Datasets
+data_train <- data[1:4169, ]
+data_test <- data[4170:5559, ]
+
+#Testing and Training Data Matrix
+dataMatrix_train <- data_SparseMatrix[1:4169, ] 
+dataMatrix_test <- data_SparseMatrix[4170:5559, ]
+
+#Corpus Clean for Testing and Training Matrix
+data_corpus_train <- data_corpus[1:4169]
+data_corpus_test <- data_corpus[4170:5559]
