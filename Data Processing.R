@@ -79,5 +79,5 @@ dataMatrix_train <- data_SparseMatrix[1:4169, ]
 dataMatrix_test <- data_SparseMatrix[4170:5559, ]
 
 #Corpus Clean for Testing and Training Matrix
-data_corpus_train <- data_corpus[1:4169]
-data_corpus_test <- data_corpus[4170:5559]
+data_corpus_train <- data_corpus_clean[1:4169]
+data_corpus_test <- data_corpus_clean[4170:5559]
